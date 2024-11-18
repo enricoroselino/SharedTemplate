@@ -1,0 +1,13 @@
+﻿global using Carter;
+global using FluentValidation;
+global using System.Reflection;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.EntityFrameworkCore.Diagnostics;
+global using Shared.Exceptions;
+global using Shared.Persistence.Extensions;
+global using Shared.Infrastructure;
+global using Shared.Infrastructure.Behaviors;
+global using Shared.Infrastructure.Configurations;
+global using Shared.Persistence.Interceptors;
+global using Shared.Infrastructure.Providers;
