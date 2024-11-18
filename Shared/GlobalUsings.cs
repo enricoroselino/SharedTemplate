@@ -11,3 +11,8 @@ global using Shared.Infrastructure.Behaviors;
 global using Shared.Infrastructure.Configurations;
 global using Shared.Persistence.Interceptors;
 global using Shared.Infrastructure.Providers;
+global using Microsoft.AspNetCore.Diagnostics;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.Extensions.Logging;
+global using Shared.Extensions;

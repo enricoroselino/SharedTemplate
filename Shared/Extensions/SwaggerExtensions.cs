@@ -4,7 +4,7 @@ namespace Shared.Extensions;
 
 internal static class SwaggerExtensions
 {
-    public static void AddSwaggerAuthentication(this IServiceCollection services)
+    public static IServiceCollection AddSwaggerAuthentication(this IServiceCollection services)
     {
         var securityScheme = new OpenApiSecurityScheme
         {
@@ -28,5 +28,7 @@ internal static class SwaggerExtensions
             options.AddSecurityDefinition("Bearer", securityScheme);
             options.AddSecurityRequirement(securityRequirement);
         });
+        
+        return services;
     }
 }

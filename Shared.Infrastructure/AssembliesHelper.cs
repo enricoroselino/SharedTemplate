@@ -9,7 +9,6 @@ public static class AssembliesHelper
         var types = assemblies
             .Where(a => !a.IsDynamic)
             .SelectMany(a => a.GetTypes())
-            .Distinct()
             .Where(x => x is { IsClass: true, IsAbstract: false } && x.IsAssignableTo(typeof(TInterface)))
             .ToArray();
 

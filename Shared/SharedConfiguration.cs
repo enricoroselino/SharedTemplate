@@ -1,6 +1,4 @@
-﻿using Shared.Extensions;
-
-namespace Shared;
+﻿namespace Shared;
 
 public static class SharedConfiguration
 {
@@ -9,7 +7,10 @@ public static class SharedConfiguration
         services
             .AddSerilogConfig()
             .AddQuartzConfiguration()
-            .AddEndpointConfiguration()
+            .AddEndpointConfiguration();
+
+        services
+            .AddAuthenticationConfiguration()
             .AddSwaggerAuthentication();
 
         services

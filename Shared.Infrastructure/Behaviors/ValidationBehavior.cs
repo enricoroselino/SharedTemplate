@@ -15,7 +15,8 @@ public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TReq
         return await next();
     }
 
-    private static async Task<List<ValidationFailure>> Validate(IEnumerable<IValidator<TRequest>> validators,
+    private static async Task<List<FluentValidation.Results.ValidationFailure>> Validate(
+        IEnumerable<IValidator<TRequest>> validators,
         ValidationContext<TRequest> context, CancellationToken cancellationToken = default)
     {
         var validatorTasks = validators

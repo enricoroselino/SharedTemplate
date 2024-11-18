@@ -1,10 +1,4 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-
-namespace Shared.Exceptions;
+﻿namespace Shared.Exceptions;
 
 internal class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IExceptionHandler
 {
@@ -77,7 +71,7 @@ internal class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : 
                         new { Key = propertyName, Messages = errorsMessages.Distinct().ToArray() })
                 .ToDictionary(x => x.Key, x => x.Messages);
 
-            problemDetails.Extensions.Add("ValidationErrors", errorsDictionary);
+            problemDetails.Extensions.Add("Errors", errorsDictionary);
         }
 
         await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken).ConfigureAwait(false);
