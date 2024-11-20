@@ -1,4 +1,4 @@
-﻿namespace Shared.Infrastructure.Behaviors;
+﻿namespace Shared.Application.Behaviors;
 
 public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> validators)
     : IPipelineBehavior<TRequest, TResponse>
@@ -15,7 +15,7 @@ public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TReq
         return await next();
     }
 
-    private static async Task<List<FluentValidation.Results.ValidationFailure>> Validate(
+    private static async Task<List<ValidationFailure>> Validate(
         IEnumerable<IValidator<TRequest>> validators,
         ValidationContext<TRequest> context, CancellationToken cancellationToken = default)
     {

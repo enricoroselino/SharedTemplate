@@ -19,10 +19,7 @@ public static class SerilogConfiguration
             .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Error)
             .Filter.ByExcluding(Matching.FromSource("Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware"));
 
-        loggerConfiguration
-            .WriteTo.Console();
-        //.WriteTo.Seq("");
-
+        loggerConfiguration.WriteTo.Console();
         Log.Logger = loggerConfiguration.CreateLogger();
         services.AddSerilog(Log.Logger);
         return services;

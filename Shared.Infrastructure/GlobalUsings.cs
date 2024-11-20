@@ -5,7 +5,6 @@ global using Asp.Versioning;
 global using Serilog;
 global using Serilog.Events;
 global using Serilog.Filters;
-global using FluentValidation;
 global using System.Reflection;
 global using System.Diagnostics;
 global using Microsoft.AspNetCore.Builder;

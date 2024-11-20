@@ -1,14 +1,22 @@
-﻿namespace Shared.Exceptions;
+﻿namespace Shared;
 
-internal class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IExceptionHandler
+internal sealed class GlobalExceptionHandler : IExceptionHandler
 {
-    // ReSharper disable once TooManyDeclarations
+    private readonly ILogger<GlobalExceptionHandler> _logger;
+    private readonly TimeProvider _timeProvider;
+
+    public GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger, TimeProvider timeProvider)
+    {
+        _logger = logger;
+        _timeProvider = timeProvider;
+    }
+
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception,
         CancellationToken cancellationToken)
     {
-        logger.LogError(
+        _logger.LogError(
             "[ERR] Message: {@ExceptionMessage}, Time of occurrence {@Time}",
-            exception.Message, DateTime.UtcNow);
+            exception.Message, _timeProvider.GetLocalNow());
 
         (string Type, string Detail, string Title, int StatusCode) details = exception switch
         {
