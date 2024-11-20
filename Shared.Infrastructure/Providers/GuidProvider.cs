@@ -9,5 +9,5 @@ public interface IGuidProvider
 public class GuidProvider : IGuidProvider
 {
     public Guid NewRandom() => Guid.NewGuid();
-    public Guid NewSequential() => Uuid.NewSequential();
+    public Guid NewSequential() => Guid.CreateVersion7();
 }

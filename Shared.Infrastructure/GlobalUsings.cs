@@ -1,5 +1,4 @@
-﻿global using UUIDNext;
-global using Quartz;
+﻿global using Quartz;
 global using Asp.Versioning;
 global using Serilog;
 global using Serilog.Events;
