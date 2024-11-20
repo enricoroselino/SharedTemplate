@@ -1,5 +1,7 @@
 using Shared;
 using Shared.Extensions;
+using Shared.Infrastructure.Ciphers;
+using Shared.Infrastructure.Configurations;
 using Shared.Presentation.Documentation;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,9 @@ builder.Services
 
 builder.Services
     .AddSharedConfiguration()
+    .AddCiphers();
+
+builder.Services
     .AddCarterFromAssemblies(typeof(Program).Assembly)
     .AddMediatorFromAssemblies(typeof(Program).Assembly)
     .AddQuartzFromAssemblies(typeof(Program).Assembly);
