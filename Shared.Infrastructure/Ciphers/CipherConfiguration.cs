@@ -8,6 +8,7 @@ public static class CipherConfiguration
     {
         services
             .AddTransient<ITextCipher, TextCipher>()
+            .AddTransient<IFileCipher, FileCipher>()
             .AddOptions<CipherOptions>()
             .BindConfiguration(CipherOptions.Section);
 
