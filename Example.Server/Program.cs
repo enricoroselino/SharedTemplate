@@ -1,11 +1,12 @@
-using Scalar.AspNetCore;
 using Shared;
 using Shared.Documentation;
 using Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScalarConfiguration();
+builder.Services
+    .AddSwaggerDocumentation()
+    .AddScalarDocumentation();
 
 builder.Services
     .AddSharedConfiguration()
@@ -15,7 +16,6 @@ builder.Services
 
 var app = builder.Build();
 
-app.UseScalarConfiguration();
-
+app.UseSwaggerDocumentation();
 app.UseSharedConfiguration();
 app.Run();

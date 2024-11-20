@@ -2,13 +2,13 @@
 
 public static class ScalarConfiguration
 {
-    public static IServiceCollection AddScalarConfiguration(this IServiceCollection services)
+    public static IServiceCollection AddScalarDocumentation(this IServiceCollection services)
     {
         services.AddOpenApi();
         return services;
     }
 
-    public static WebApplication UseScalarConfiguration(this WebApplication app)
+    public static WebApplication UseScalarDocumentation(this WebApplication app)
     {
         if (!app.Environment.IsDevelopment()) return app;
 
