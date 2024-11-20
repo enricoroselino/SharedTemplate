@@ -7,33 +7,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Shared.Application\Shared.Application.csproj" />
+        <ProjectReference Include="..\Shared.Application\Shared.Application.csproj"/>
         <ProjectReference Include="..\Shared.Contracts\Shared.Contracts.csproj"/>
         <ProjectReference Include="..\Shared.Infrastructure\Shared.Infrastructure.csproj"/>
-        <ProjectReference Include="..\Shared.Persistence\Shared.Persistence.csproj" />
+        <ProjectReference Include="..\Shared.Persistence\Shared.Persistence.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App"/>
     </ItemGroup>
-
+    
     <ItemGroup>
-        <Compile Remove="Shared.Infrastructure\**"/>
-        <Compile Remove="Extensions\SwaggerExtensions.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <EmbeddedResource Remove="Shared.Infrastructure\**"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Remove="Shared.Infrastructure\**"/>
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
-      <PackageReference Include="Scalar.AspNetCore" Version="1.2.41" />
-      <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0"/>
+        <PackageReference Include="Scalar.AspNetCore" Version="1.2.41"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0"/>
     </ItemGroup>
 
 </Project>
