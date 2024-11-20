@@ -14,9 +14,4 @@
       <Folder Include="Weather\Features\" />
     </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
-      <PackageReference Include="Scalar.AspNetCore" Version="1.2.40" />
-    </ItemGroup>
-
 </Project>

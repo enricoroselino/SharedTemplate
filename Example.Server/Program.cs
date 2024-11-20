@@ -1,12 +1,11 @@
 using Scalar.AspNetCore;
 using Shared;
+using Shared.Documentation;
 using Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddScalarConfiguration();
 
 builder.Services
     .AddSharedConfiguration()
@@ -16,13 +15,7 @@ builder.Services
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapScalarApiReference();
-    app.MapOpenApi();
-}
+app.UseScalarConfiguration();
 
-app.UseHttpsRedirection();
 app.UseSharedConfiguration();
 app.Run();
