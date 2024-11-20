@@ -1,4 +1,6 @@
-﻿namespace Shared.Contracts.CQRS;
+﻿using MediatR;
+
+namespace Shared.Contracts.CQRS;
 
 public interface ICommandHandler<in TCommand, TResponse>
     : IRequestHandler<TCommand, TResponse>

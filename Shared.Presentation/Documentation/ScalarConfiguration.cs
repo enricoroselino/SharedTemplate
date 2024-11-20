@@ -1,4 +1,9 @@
-﻿namespace Shared.Documentation;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Scalar.AspNetCore;
+
+namespace Shared.Presentation.Documentation;
 
 public static class ScalarConfiguration
 {

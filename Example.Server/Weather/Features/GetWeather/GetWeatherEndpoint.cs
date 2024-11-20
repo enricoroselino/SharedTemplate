@@ -1,4 +1,7 @@
-﻿using Shared.Contracts.Models;
+﻿using Carter;
+using MediatR;
+using Shared.Contracts.Models;
+using Shared.Contracts.Verdict;
 
 namespace Example.Server.Weather.Features.GetWeather;
 

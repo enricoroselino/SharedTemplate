@@ -1,4 +1,7 @@
-﻿namespace Shared.Infrastructure.Configurations;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Shared.Infrastructure.Providers.TokenProvider;
+
+namespace Shared.Infrastructure.Configurations;
 
 public static class AuthenticationConfiguration
 {

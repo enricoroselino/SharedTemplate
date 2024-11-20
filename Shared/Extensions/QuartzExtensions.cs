@@ -1,5 +1,11 @@
 ﻿
 
+using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Quartz;
+using Shared.Infrastructure;
+
 namespace Shared.Extensions;
 
 public static class QuartzExtensions

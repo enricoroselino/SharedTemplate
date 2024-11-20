@@ -1,4 +1,9 @@
-﻿namespace Shared.Persistence.Interceptors;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Shared.Contracts.DDD;
+using Shared.Persistence.Extensions;
+
+namespace Shared.Persistence.Interceptors;
 
 public class AuditableEntityInterceptor : SaveChangesInterceptor
 {

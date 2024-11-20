@@ -1,4 +1,11 @@
-﻿namespace Shared;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Shared.Contracts.Exceptions;
+
+namespace Shared;
 
 internal sealed class GlobalExceptionHandler : IExceptionHandler
 {

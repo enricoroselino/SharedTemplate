@@ -1,4 +1,7 @@
-﻿namespace Example.Server.Weather.Jobs;
+﻿using Microsoft.Extensions.Options;
+using Quartz;
+
+namespace Example.Server.Weather.Jobs;
 
 public class WeatherBackgroundJob : IJob
 {

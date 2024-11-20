@@ -1,4 +1,9 @@
-﻿namespace Shared.Extensions;
+﻿using System.Reflection;
+using Carter;
+using Microsoft.Extensions.DependencyInjection;
+using Shared.Infrastructure;
+
+namespace Shared.Extensions;
 
 public static class CarterExtensions
 {

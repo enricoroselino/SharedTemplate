@@ -1,4 +1,7 @@
-﻿namespace Shared.Persistence.Extensions;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+
+namespace Shared.Persistence.Extensions;
 
 internal static class EntityExtensions
 {

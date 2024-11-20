@@ -1,6 +1,6 @@
 using Shared;
-using Shared.Documentation;
 using Shared.Extensions;
+using Shared.Presentation.Documentation;
 
 var builder = WebApplication.CreateBuilder(args);
 

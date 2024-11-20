@@ -1,4 +1,6 @@
-﻿namespace Shared.Persistence.Extensions;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Shared.Persistence.Extensions;
 
 public static class TransactionExtensions
 {

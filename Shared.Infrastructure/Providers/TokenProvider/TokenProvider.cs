@@ -1,4 +1,12 @@
-﻿namespace Shared.Infrastructure.Providers.TokenProvider;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Shared.Infrastructure.Helpers;
+
+namespace Shared.Infrastructure.Providers.TokenProvider;
 
 public interface ITokenProvider
 {

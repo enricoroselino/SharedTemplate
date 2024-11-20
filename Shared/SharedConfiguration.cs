@@ -1,4 +1,14 @@
-﻿namespace Shared;
+﻿using Carter;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
+using Shared.Infrastructure.Configurations;
+using Shared.Infrastructure.Providers;
+using Shared.Persistence.Extensions;
+using Shared.Persistence.Interceptors;
+using Shared.Presentation;
+
+namespace Shared;
 
 public static class SharedConfiguration
 {

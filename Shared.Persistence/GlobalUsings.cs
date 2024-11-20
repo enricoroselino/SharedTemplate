@@ -1,9 +1,0 @@
-﻿global using Microsoft.EntityFrameworkCore;
-global using Microsoft.EntityFrameworkCore.Diagnostics;
-global using Microsoft.EntityFrameworkCore.ChangeTracking;
-global using MediatR;
-global using Shared.Contracts.DDD;
-global using Shared.Persistence.Extensions;
-global using Shared.Contracts.Interfaces;
-global using Microsoft.AspNetCore.Builder;
-global using Microsoft.Extensions.DependencyInjection;

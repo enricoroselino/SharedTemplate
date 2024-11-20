@@ -1,4 +1,7 @@
-﻿namespace Shared.Application.Behaviors;
+﻿using MediatR;
+using Microsoft.Extensions.Logging;
+
+namespace Shared.Application.Behaviors;
 
 public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull

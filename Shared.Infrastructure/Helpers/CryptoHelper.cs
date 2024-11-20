@@ -1,4 +1,7 @@
-﻿namespace Shared.Infrastructure.Helpers;
+﻿using System.Text;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+
+namespace Shared.Infrastructure.Helpers;
 
 public static class CryptoHelper
 {

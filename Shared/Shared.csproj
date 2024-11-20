@@ -11,16 +11,11 @@
         <ProjectReference Include="..\Shared.Contracts\Shared.Contracts.csproj"/>
         <ProjectReference Include="..\Shared.Infrastructure\Shared.Infrastructure.csproj"/>
         <ProjectReference Include="..\Shared.Persistence\Shared.Persistence.csproj"/>
+        <ProjectReference Include="..\Shared.Presentation\Shared.Presentation.csproj" />
     </ItemGroup>
 
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App"/>
-    </ItemGroup>
-    
-    <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0"/>
-        <PackageReference Include="Scalar.AspNetCore" Version="1.2.41"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0"/>
     </ItemGroup>
 
 </Project>

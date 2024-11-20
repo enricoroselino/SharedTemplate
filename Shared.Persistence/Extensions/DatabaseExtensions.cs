@@ -1,4 +1,9 @@
-﻿namespace Shared.Persistence.Extensions;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Shared.Contracts.Interfaces;
+
+namespace Shared.Persistence.Extensions;
 
 public static class DatabaseExtensions
 {

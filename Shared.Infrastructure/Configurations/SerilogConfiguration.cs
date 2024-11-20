@@ -1,3 +1,8 @@
+using Microsoft.Extensions.DependencyInjection;
+using Serilog;
+using Serilog.Events;
+using Serilog.Filters;
+
 namespace Shared.Infrastructure.Configurations;
 
 public static class SerilogConfiguration

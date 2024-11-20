@@ -1,4 +1,7 @@
-﻿
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Shared.Contracts.DDD;
 
 namespace Shared.Persistence.Interceptors;
 
