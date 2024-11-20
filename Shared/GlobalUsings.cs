@@ -17,3 +17,8 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Options;
 global using Quartz;
+global using Microsoft.Extensions.Hosting;
+global using Scalar.AspNetCore;
+global using Asp.Versioning.ApiExplorer;
+global using Microsoft.OpenApi.Models;
+global using Swashbuckle.AspNetCore.SwaggerGen;

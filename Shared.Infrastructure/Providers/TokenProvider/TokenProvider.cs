@@ -1,6 +1,4 @@
-﻿using Shared.Infrastructure.Helpers;
-
-namespace Shared.Infrastructure.Providers.TokenProvider;
+﻿namespace Shared.Infrastructure.Providers.TokenProvider;
 
 public interface ITokenProvider
 {

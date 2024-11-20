@@ -30,6 +30,7 @@ public static class SharedConfiguration
     public static WebApplication UseSharedConfiguration(this WebApplication app)
     {
         app
+            .UseHttpsRedirection()
             .UseCors(policyBuilder => policyBuilder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader())
             .UseExceptionHandler(cfg => { });
 
