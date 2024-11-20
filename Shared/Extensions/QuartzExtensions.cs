@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-using Quartz;
+﻿
 
 namespace Shared.Extensions;
 

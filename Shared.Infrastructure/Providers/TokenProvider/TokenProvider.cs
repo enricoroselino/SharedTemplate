@@ -1,4 +1,6 @@
-﻿namespace Shared.Infrastructure.Providers.TokenProvider;
+﻿using Shared.Infrastructure.Helpers;
+
+namespace Shared.Infrastructure.Providers.TokenProvider;
 
 public interface ITokenProvider
 {
@@ -11,7 +13,7 @@ public interface ITokenProvider
 public class TokenProvider : ITokenProvider
 {
     public string Scheme => JwtBearerDefaults.AuthenticationScheme;
-    public TokenValidationParameters TokenValidationParameters { get; }
+    public TokenValidationParameters TokenValidationParameters { get; init; }
     private static string Algorithms => SecurityAlgorithms.HmacSha256Signature;
     private readonly IOptions<TokenOptions> _tokenSettings;
     private readonly JwtSecurityTokenHandler _tokenHandler;
@@ -22,16 +24,9 @@ public class TokenProvider : ITokenProvider
         _tokenSettings = tokenSettings;
         _tokenHandler = new JwtSecurityTokenHandler();
 
-        var saltedKey = KeyDerivation.Pbkdf2(
-            password: tokenSettings.Value.Key,
-            salt: Encoding.UTF8.GetBytes(tokenSettings.Value.Salt),
-            prf: KeyDerivationPrf.HMACSHA256,
-            iterationCount: 10000,
-            numBytesRequested: 32
-        );
-
-        var key = new SymmetricSecurityKey(saltedKey);
-        _signingCredentials = new SigningCredentials(key, Algorithms);
+        var saltedKey = CryptoHelper.DerivationKey(tokenSettings.Value.Key, tokenSettings.Value.Salt, 32);
+        var symmetricKey = new SymmetricSecurityKey(saltedKey);
+        _signingCredentials = new SigningCredentials(symmetricKey, Algorithms);
         TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
@@ -40,7 +35,7 @@ public class TokenProvider : ITokenProvider
             ValidateIssuerSigningKey = true,
             ValidIssuer = tokenSettings.Value.ValidIssuer,
             ValidAudience = tokenSettings.Value.ValidAudience,
-            IssuerSigningKey = key,
+            IssuerSigningKey = symmetricKey,
             ClockSkew = TimeSpan.Zero,
         };
     }

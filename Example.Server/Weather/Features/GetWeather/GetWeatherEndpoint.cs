@@ -1,4 +1,6 @@
-﻿namespace Example.Server.Weather.Features.GetWeather;
+﻿using Shared.Contracts.Models;
+
+namespace Example.Server.Weather.Features.GetWeather;
 
 public class GetWeatherEndpoint : ICarterModule
 {
@@ -15,7 +17,6 @@ public class GetWeatherEndpoint : ICarterModule
                 return result.Fold(onSuccess: Results.Ok, onFailure: failure => failure.ToProblemDetails(httpContext));
             })
             .WithName("GetWeatherForecast")
-            .WithSummary("Get Weather Forecast")
-            .WithOpenApi();
+            .WithSummary("Get Weather Forecast");
     }
 }

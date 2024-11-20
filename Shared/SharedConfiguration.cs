@@ -5,13 +5,11 @@ public static class SharedConfiguration
     public static IServiceCollection AddSharedConfiguration(this IServiceCollection services)
     {
         services
+            .AddCarter()
             .AddSerilogConfig()
             .AddQuartzConfiguration()
-            .AddEndpointConfiguration();
-
-        services
-            .AddAuthenticationConfiguration()
-            .AddSwaggerAuthentication();
+            .AddEndpointConfiguration()
+            .AddAuthenticationConfiguration();
 
         services
             .AddCors()

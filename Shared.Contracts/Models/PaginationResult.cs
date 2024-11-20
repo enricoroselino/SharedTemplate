@@ -1,8 +1,6 @@
-﻿namespace Shared.Models;
+﻿namespace Shared.Contracts.Models;
 
-public record PaginationRequest(int PageIndex = 1, int PageSize = 10);
-
-public class PaginatedResult<TEntity>(int pageIndex, int pageSize, long count, IEnumerable<TEntity> data)
+public class PaginationResult<TEntity>(int pageIndex, int pageSize, long count, IEnumerable<TEntity> data)
     where TEntity : class
 {
     public int PageIndex { get; } = pageIndex;

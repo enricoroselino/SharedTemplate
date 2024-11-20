@@ -23,13 +23,12 @@ public static class EndpointConfiguration
     {
         var versionSet = app.NewApiVersionSet()
             .HasApiVersion(new ApiVersion(1))
-            //.HasApiVersion(new ApiVersion(2))
             .ReportApiVersions()
             .Build();
 
-        var endpointGroup = app.MapGroup("api/v{apiVersion:apiVersion}")
-            .WithApiVersionSet(versionSet)
-            .WithOpenApi();
+        var endpointGroup = app
+            .MapGroup("api/v{apiVersion:apiVersion}")
+            .WithApiVersionSet(versionSet);
 
         return endpointGroup;
     }
