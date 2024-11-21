@@ -2,7 +2,7 @@ using Shared;
 using Shared.Extensions;
 using Shared.Infrastructure.Ciphers;
 using Shared.Infrastructure.Configurations;
-using Shared.Presentation.Documentation;
+using Shared.Infrastructure.Configurations.Documentation;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Scalar.AspNetCore;
 
-namespace Shared.Presentation.Documentation;
+namespace Shared.Infrastructure.Configurations.Documentation;
 
 public static class ScalarConfiguration
 {

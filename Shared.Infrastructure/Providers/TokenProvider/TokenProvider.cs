@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Shared.Contracts.Models;
 using Shared.Infrastructure.Helpers;
 
 namespace Shared.Infrastructure.Providers.TokenProvider;
@@ -14,6 +15,7 @@ public interface ITokenProvider
     public TokenValidationParameters TokenValidationParameters { get; }
     public string GenerateAccessToken(IEnumerable<Claim> claims);
     public string GenerateRefreshToken();
+    public TokenPair GenerateTokenPair(IEnumerable<Claim> claims);
 }
 
 public class TokenProvider : ITokenProvider
@@ -72,5 +74,10 @@ public class TokenProvider : ITokenProvider
         using var rng = RandomNumberGenerator.Create();
         rng.GetBytes(randomNumber);
         return Base64UrlEncoder.Encode(randomNumber);
+    }
+
+    public TokenPair GenerateTokenPair(IEnumerable<Claim> claims)
+    {
+        return new TokenPair(GenerateAccessToken(claims), GenerateRefreshToken());
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Quartz;
 using Shared.Infrastructure;
+using Shared.Infrastructure.Helpers;
 
 namespace Shared.Extensions;
 

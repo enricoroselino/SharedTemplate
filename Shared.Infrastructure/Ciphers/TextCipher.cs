@@ -13,31 +13,31 @@ public interface ITextCipher
 
 public class TextCipher : ITextCipher
 {
-    private readonly IOptions<CipherOptions> _options;
-    private ICipher Cipher => new AesEcb(_options);
+    private readonly IOptions<AesCipherOptions> _options;
+    private IAesCipher CipherDefined => new AesCbcImplementation(_options);
 
-    public TextCipher(IOptions<CipherOptions> options)
+    public TextCipher(IOptions<AesCipherOptions> options)
     {
         _options = options;
     }
-    
+
     public async Task<string> Encrypt(string plainText, CancellationToken cancellationToken = default)
     {
         var bytes = Encoding.UTF8.GetBytes(plainText);
-
-        await using var cipher = Cipher;
         using var inputStream = new MemoryStream(bytes);
-        await using var encryptedStream = await cipher.Encrypt(inputStream, cancellationToken);
-        return UrlBase64.Encode(encryptedStream.ToArray());
+
+        await using var cipher = CipherDefined;
+        using var result = await cipher.Encrypt(inputStream, cancellationToken);
+        return UrlBase64.Encode(result.ToArray());
     }
 
     public async Task<string> Decrypt(string cipherText, CancellationToken cancellationToken = default)
     {
         var bytes = UrlBase64.Decode(cipherText);
-
-        await using var cipher = Cipher;
         using var inputStream = new MemoryStream(bytes);
-        await using var decryptedStream = await cipher.Decrypt(inputStream, cancellationToken);
-        return Encoding.UTF8.GetString(decryptedStream.ToArray());
+
+        await using var cipher = CipherDefined;
+        using var result = await cipher.Decrypt(inputStream, cancellationToken);
+        return Encoding.UTF8.GetString(result.ToArray());
     }
 }

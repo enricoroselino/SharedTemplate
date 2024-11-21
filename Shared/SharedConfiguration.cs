@@ -6,7 +6,6 @@ using Shared.Infrastructure.Configurations;
 using Shared.Infrastructure.Providers;
 using Shared.Persistence.Extensions;
 using Shared.Persistence.Interceptors;
-using Shared.Presentation;
 
 namespace Shared;
 

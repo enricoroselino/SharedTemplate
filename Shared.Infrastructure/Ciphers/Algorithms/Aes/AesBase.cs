@@ -6,24 +6,14 @@ namespace Shared.Infrastructure.Ciphers.Algorithms.Aes;
 
 public abstract class AesBase : IDisposable, IAsyncDisposable
 {
-    protected readonly SymmetricAlgorithm BaseCipher;
-    private const int KeyDefinedLength = 32;
-    private bool _disposed;
+    private const int KeySize = AesSizeConstant.KeySize;
+    protected byte[] Key { get; }
+    protected bool IsDisposed;
 
-    protected byte[] Key
+    protected AesBase(IOptions<AesCipherOptions> options)
     {
-        get => BaseCipher.Key;
-        private init => BaseCipher.Key = value;
-    }
-
-    protected AesBase(IOptions<CipherOptions> options)
-    {
-        var saltedKey = CryptoHelper.DerivationKey(options.Value.Key, options.Value.Salt, KeyDefinedLength);
-        ArgumentOutOfRangeException.ThrowIfNotEqual(saltedKey.Length, KeyDefinedLength);
-
-        BaseCipher = System.Security.Cryptography.Aes.Create();
-        BaseCipher.Padding = PaddingMode.PKCS7;
-        BaseCipher.KeySize = 256;
+        var saltedKey = CryptoHelper.DerivationKey(options.Value.Key, options.Value.Salt, KeySize);
+        ArgumentOutOfRangeException.ThrowIfNotEqual(saltedKey.Length, KeySize);
         Key = saltedKey;
     }
 
@@ -44,16 +34,14 @@ public abstract class AesBase : IDisposable, IAsyncDisposable
 
     protected virtual void Dispose(bool disposing)
     {
-        if (_disposed)
-            return;
+        if (IsDisposed) return;
 
         if (disposing)
         {
             // Dispose managed resources here
-            BaseCipher.Dispose();
         }
 
-        _disposed = true;
+        IsDisposed = true;
     }
 
     // Finalizer
