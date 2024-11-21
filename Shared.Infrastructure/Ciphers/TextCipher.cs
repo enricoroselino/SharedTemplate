@@ -14,7 +14,7 @@ public interface ITextCipher
 public class TextCipher : ITextCipher
 {
     private readonly IOptions<AesCipherOptions> _options;
-    private IAesCipher CipherDefined => new AesCbcImplementation(_options);
+    private IAesCipher CipherDefined => new AesEcbImplementation(_options);
 
     public TextCipher(IOptions<AesCipherOptions> options)
     {
