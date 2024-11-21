@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Shared.Presentation.Documentation;
+namespace Shared.Infrastructure.Configurations.Documentation;
 
 public class SwaggerVersioningOptions : IConfigureOptions<SwaggerGenOptions>
 {
@@ -19,7 +19,7 @@ public class SwaggerVersioningOptions : IConfigureOptions<SwaggerGenOptions>
     {
         foreach (var description in _provider.ApiVersionDescriptions)
         {
-            var infoDescription = description.IsDeprecated ? "API Deprecated" : "API Documentation";
+            var infoDescription = description.IsDeprecated ? "API version is deprecated" : "API Documentation";
             options.SwaggerDoc(description.GroupName, CreateVersionInfo(description, infoDescription));
         }
     }

@@ -2,6 +2,7 @@
 using Carter;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Infrastructure;
+using Shared.Infrastructure.Helpers;
 
 namespace Shared.Extensions;
 
