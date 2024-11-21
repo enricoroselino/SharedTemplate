@@ -31,6 +31,6 @@ public class WeatherBackgroundJobOption : IConfigureOptions<QuartzOptions>
             .AddJob<WeatherBackgroundJob>(builder => builder.WithIdentity(jobKey))
             .AddTrigger(trigger => trigger
                 .ForJob(jobKey)
-                .WithCronSchedule("0/5 * * * * ?"));
+                .WithCronSchedule("0/20 * * * * ?"));
     }
 }

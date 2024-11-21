@@ -25,41 +25,41 @@ internal sealed class GlobalExceptionHandler : IExceptionHandler
             "[ERR] Message: {@ExceptionMessage}, Time of occurrence {@Time}",
             exception.Message, _timeProvider.GetLocalNow());
 
-        (string Type, string Detail, string Title, int StatusCode) details = exception switch
+        (string Type, string Title, string Detail, int StatusCode) details = exception switch
         {
             InternalServerException =>
             (
                 "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1",
-                "Something went wrong",
                 "Internal Server Error",
+                "Something went wrong",
                 httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError
             ),
             ValidationException =>
             (
                 "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1",
-                exception.Message,
+                "Validation Error",
                 "one or more validation errors occurred.",
                 httpContext.Response.StatusCode = StatusCodes.Status400BadRequest
             ),
             BadRequestException =>
             (
                 "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1",
-                exception.Message,
                 "Bad Request",
+                exception.Message,
                 httpContext.Response.StatusCode = StatusCodes.Status400BadRequest
             ),
             NotFoundException =>
             (
                 "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.4",
-                exception.Message,
                 "Not Found",
+                exception.Message,
                 httpContext.Response.StatusCode = StatusCodes.Status404NotFound
             ),
             _ =>
             (
-                "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                "Something went wrong",
+                "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1",
                 "Unknown Error",
+                "Something went wrong",
                 httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError
             )
         };
