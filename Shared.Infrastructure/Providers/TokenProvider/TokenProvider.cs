@@ -15,7 +15,7 @@ public interface ITokenProvider
     public TokenValidationParameters TokenValidationParameters { get; }
     public string GenerateAccessToken(IEnumerable<Claim> claims);
     public string GenerateRefreshToken();
-    public TokenPair GenerateTokenPair(IEnumerable<Claim> claims);
+    public TokenPairResult GenerateTokenPair(IEnumerable<Claim> claims);
 }
 
 public class TokenProvider : ITokenProvider
@@ -76,8 +76,8 @@ public class TokenProvider : ITokenProvider
         return Base64UrlEncoder.Encode(randomNumber);
     }
 
-    public TokenPair GenerateTokenPair(IEnumerable<Claim> claims)
+    public TokenPairResult GenerateTokenPair(IEnumerable<Claim> claims)
     {
-        return new TokenPair(GenerateAccessToken(claims), GenerateRefreshToken());
+        return new TokenPairResult(GenerateAccessToken(claims), GenerateRefreshToken());
     }
 }

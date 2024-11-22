@@ -5,20 +5,13 @@ using Shared.Infrastructure.Ciphers.Algorithms.Aes;
 
 namespace Shared.Infrastructure.Ciphers;
 
-public interface ITextCipher
+public sealed class TextCipher : ITextCipher
 {
-    public Task<string> Encrypt(string plainText, CancellationToken cancellationToken = default);
-    public Task<string> Decrypt(string cipherText, CancellationToken cancellationToken = default);
-}
-
-public class TextCipher : ITextCipher
-{
-    private readonly IOptions<AesCipherOptions> _options;
-    private IAesCipher CipherDefined => new AesEcbImplementation(_options);
+    private IAesCipher CipherDefined { get; init; }
 
     public TextCipher(IOptions<AesCipherOptions> options)
     {
-        _options = options;
+        CipherDefined = new AesEcbImplementation(options);
     }
 
     public async Task<string> Encrypt(string plainText, CancellationToken cancellationToken = default)

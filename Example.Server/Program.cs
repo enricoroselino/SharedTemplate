@@ -1,18 +1,9 @@
 using Shared;
 using Shared.Extensions;
-using Shared.Infrastructure.Ciphers;
-using Shared.Infrastructure.Configurations;
-using Shared.Infrastructure.Configurations.Documentation;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services
-    .AddSwaggerDocumentation()
-    .AddScalarDocumentation();
-
-builder.Services
-    .AddSharedConfiguration()
-    .AddCiphers();
+builder.Services.AddSharedConfiguration();
 
 builder.Services
     .AddCarterFromAssemblies(typeof(Program).Assembly)
@@ -21,6 +12,5 @@ builder.Services
 
 var app = builder.Build();
 
-app.UseSwaggerDocumentation();
 app.UseSharedConfiguration();
 app.Run();

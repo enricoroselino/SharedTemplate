@@ -2,8 +2,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Infrastructure.Ciphers;
 using Shared.Infrastructure.Configurations;
+using Shared.Infrastructure.Configurations.Documentation;
 using Shared.Infrastructure.Providers;
+using Shared.Infrastructure.Providers.GuidProvider;
 using Shared.Persistence.Extensions;
 using Shared.Persistence.Interceptors;
 
@@ -17,8 +20,12 @@ public static class SharedConfiguration
             .AddCarter()
             .AddSerilogConfig()
             .AddQuartzConfiguration()
+            .AddSwaggerDocumentation();
+
+        services
             .AddEndpointConfiguration()
-            .AddAuthenticationConfiguration();
+            .AddAuthenticationConfiguration()
+            .AddAuthorization();
 
         services
             .AddCors()
@@ -30,18 +37,28 @@ public static class SharedConfiguration
             .AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 
         services
-            .AddSingleton<IGuidProvider, GuidProvider>()
+            .AddTransient<IGuidProviderFactory, GuidProviderFactory>()
+            .AddTransient<MssqlGuidProvider>()
+            .AddTransient<GuidProvider>()
             .AddSingleton<TimeProvider>(TimeProvider.System);
+
+        services.AddCiphers();
 
         return services;
     }
 
     public static WebApplication UseSharedConfiguration(this WebApplication app)
     {
+        app.UseSwaggerDocumentation();
+
         app
             .UseHttpsRedirection()
             .UseCors(policyBuilder => policyBuilder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader())
             .UseExceptionHandler(cfg => { });
+
+        app
+            .UseAuthentication()
+            .UseAuthorization();
 
         app
             .UseEndpointConfiguration()

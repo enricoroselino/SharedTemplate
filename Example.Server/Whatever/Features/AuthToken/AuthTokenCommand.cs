@@ -5,4 +5,4 @@ namespace Example.Server.Whatever.Features.AuthToken;
 
 public record AuthTokenCommand(string UserName, string Password) : ICommand<AuthCommandResult>;
 
-public record AuthCommandResult(TokenPair Tokens);
+public record AuthCommandResult(TokenPairResult Tokens);

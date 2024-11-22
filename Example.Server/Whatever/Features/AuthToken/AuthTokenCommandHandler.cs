@@ -2,7 +2,10 @@
 using System.Security.Claims;
 using FluentValidation;
 using Shared.Contracts.CQRS;
+using Shared.Contracts.Enums;
+using Shared.Infrastructure.Ciphers;
 using Shared.Infrastructure.Providers;
+using Shared.Infrastructure.Providers.GuidProvider;
 using Shared.Infrastructure.Providers.TokenProvider;
 
 namespace Example.Server.Whatever.Features.AuthToken;
@@ -20,21 +23,27 @@ public class AuthTokenCommandHandler : ICommandHandler<AuthTokenCommand, AuthCom
 {
     private readonly ITokenProvider _tokenProvider;
     private readonly IGuidProvider _guidProvider;
+    private readonly ITextCipher _textCipher;
 
-    public AuthTokenCommandHandler(ITokenProvider tokenProvider, IGuidProvider guidProvider)
+    public AuthTokenCommandHandler(
+        ITokenProvider tokenProvider,
+        IGuidProviderFactory guidProviderFactory,
+        ITextCipher textCipher)
     {
         _tokenProvider = tokenProvider;
-        _guidProvider = guidProvider;
+        _guidProvider = guidProviderFactory.Create(DatabaseFlavor.Mssql);
+        _textCipher = textCipher;
     }
 
     public async Task<AuthCommandResult> Handle(AuthTokenCommand request, CancellationToken cancellationToken)
     {
+        var encryptedUserId = await _textCipher.Encrypt(_guidProvider.NewSequential().ToString(), cancellationToken);
+
+        // dont put PII data to comply GDPR like regulation
         var claims = new List<Claim>
         {
-            new Claim(JwtRegisteredClaimNames.Name, "John Doe Tampubolon"),
-            new Claim(JwtRegisteredClaimNames.EmailVerified, "john.doe@example.com"),
-            new Claim(JwtRegisteredClaimNames.NameId, _guidProvider.NewRandom().ToString()),
-            new Claim(JwtRegisteredClaimNames.Jti, _guidProvider.NewRandom().ToString())
+            new Claim(ClaimTypes.NameIdentifier, encryptedUserId),
+            new Claim(JwtRegisteredClaimNames.Jti, _guidProvider.NewSequential().ToString())
         };
 
         var tokenPair = _tokenProvider.GenerateTokenPair(claims);

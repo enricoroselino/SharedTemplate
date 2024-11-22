@@ -9,7 +9,7 @@ public interface IFileCipher
     public Task<MemoryStream> Decrypt(Stream input, CancellationToken cancellationToken = default);
 }
 
-public class FileCipher : IFileCipher
+public sealed class FileCipher : IFileCipher
 {
     private readonly IOptions<AesCipherOptions> _options;
     private IAesCipher CipherDefined => new AesCbcImplementation(_options);

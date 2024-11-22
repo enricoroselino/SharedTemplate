@@ -1,10 +1,4 @@
-﻿namespace Shared.Infrastructure.Providers;
-
-public interface IGuidProvider
-{
-    public Guid NewRandom();
-    public Guid NewSequential();
-}
+﻿namespace Shared.Infrastructure.Providers.GuidProvider;
 
 public class GuidProvider : IGuidProvider
 {
