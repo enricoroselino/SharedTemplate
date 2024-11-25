@@ -2,7 +2,7 @@ using Shared.Contracts.DDD;
 
 namespace Shared.Contracts.ValueObjects;
 
-public sealed class Money : ValueObject
+public sealed record Money
 {
     public decimal Amount { get; init; }
     public string Currency { get; init; }
@@ -11,18 +11,12 @@ public sealed class Money : ValueObject
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(currency);
 
-        Amount = amount;
+        Amount = Math.Round(amount, 4);
         Currency = currency;
     }
 
     public static Money Rupiah(decimal amount)
     {
         return new Money(amount, "IDR");
-    }
-
-    protected override IEnumerable<object> GetAtomicValues()
-    {
-        yield return Amount;
-        yield return Currency;
     }
 };
