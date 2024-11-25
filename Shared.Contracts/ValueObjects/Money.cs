@@ -1,5 +1,3 @@
-using Shared.Contracts.DDD;
-
 namespace Shared.Contracts.ValueObjects;
 
 public sealed record Money
