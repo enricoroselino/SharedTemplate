@@ -23,11 +23,11 @@ public class TokenProvider : ITokenProvider
     public string Scheme => JwtBearerDefaults.AuthenticationScheme;
     public TokenValidationParameters TokenValidationParameters { get; init; }
     private static string Algorithms => SecurityAlgorithms.HmacSha256Signature;
-    private readonly IOptions<TokenOptions> _tokenSettings;
+    private readonly IOptions<TokenSettings> _tokenSettings;
     private readonly JwtSecurityTokenHandler _tokenHandler;
     private readonly SigningCredentials _signingCredentials;
 
-    public TokenProvider(IOptions<TokenOptions> tokenSettings)
+    public TokenProvider(IOptions<TokenSettings> tokenSettings)
     {
         _tokenSettings = tokenSettings;
         _tokenHandler = new JwtSecurityTokenHandler();

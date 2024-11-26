@@ -1,8 +1,8 @@
 ﻿namespace Shared.Infrastructure.Ciphers.Algorithms.Aes;
 
-public class AesCipherOptions
+public class AesCipherSettings
 {
-    public const string Section = nameof(AesCipherOptions);
+    public const string Section = nameof(AesCipherSettings);
     public string Key { get; init; } = default!;
     public string Salt { get; init; } = default!;
 }

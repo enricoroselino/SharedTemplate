@@ -7,7 +7,7 @@ public sealed class AesEcbImplementation : AesBase, IAesCipher
 {
     private readonly SymmetricAlgorithm _baseCipher;
 
-    public AesEcbImplementation(IOptions<AesCipherOptions> options) : base(options)
+    public AesEcbImplementation(IOptions<AesCipherSettings> options) : base(options)
     {
         _baseCipher = System.Security.Cryptography.Aes.Create();
         _baseCipher.Padding = PaddingMode.PKCS7;

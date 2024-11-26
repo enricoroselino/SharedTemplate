@@ -7,10 +7,10 @@ namespace Shared.Infrastructure.Ciphers;
 
 public sealed class TextCipher : ITextCipher
 {
-    private readonly IOptions<AesCipherOptions> _options;
+    private readonly IOptions<AesCipherSettings> _options;
     private IAesCipher CipherDefined => new AesEcbImplementation(_options);
 
-    public TextCipher(IOptions<AesCipherOptions> options)
+    public TextCipher(IOptions<AesCipherSettings> options)
     {
         _options = options;
     }

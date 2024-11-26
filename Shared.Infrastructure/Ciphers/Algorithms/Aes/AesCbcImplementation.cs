@@ -8,7 +8,7 @@ public sealed class AesCbcImplementation : AesBase, IAesCipher
     private readonly SymmetricAlgorithm _baseCipher;
     private const int IvSize = AesSizeConstant.IvSize;
 
-    public AesCbcImplementation(IOptions<AesCipherOptions> options) : base(options)
+    public AesCbcImplementation(IOptions<AesCipherSettings> options) : base(options)
     {
         _baseCipher = System.Security.Cryptography.Aes.Create();
         _baseCipher.Padding = PaddingMode.PKCS7;

@@ -10,7 +10,7 @@ public abstract class AesBase : IDisposable, IAsyncDisposable
     protected byte[] Key { get; }
     protected bool IsDisposed;
 
-    protected AesBase(IOptions<AesCipherOptions> options)
+    protected AesBase(IOptions<AesCipherSettings> options)
     {
         var saltedKey = CryptoHelper.DerivationKey(options.Value.Key, options.Value.Salt, KeySize);
         ArgumentOutOfRangeException.ThrowIfNotEqual(saltedKey.Length, KeySize);

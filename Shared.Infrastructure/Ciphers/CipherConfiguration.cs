@@ -10,8 +10,8 @@ public static class CipherConfiguration
         services
             .AddTransient<ITextCipher, TextCipher>()
             .AddTransient<IFileCipher, FileCipher>()
-            .AddOptions<AesCipherOptions>()
-            .BindConfiguration(AesCipherOptions.Section);
+            .AddOptions<AesCipherSettings>()
+            .BindConfiguration(AesCipherSettings.Section);
 
         return services;
     }

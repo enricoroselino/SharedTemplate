@@ -5,10 +5,10 @@ namespace Shared.Infrastructure.Ciphers;
 
 public sealed class FileCipher : IFileCipher
 {
-    private readonly IOptions<AesCipherOptions> _options;
+    private readonly IOptions<AesCipherSettings> _options;
     private IAesCipher CipherDefined => new AesCbcImplementation(_options);
 
-    public FileCipher(IOptions<AesCipherOptions> options)
+    public FileCipher(IOptions<AesCipherSettings> options)
     {
         _options = options;
     }

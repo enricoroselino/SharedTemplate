@@ -9,8 +9,8 @@ public static class AuthenticationConfiguration
     {
         services
             .AddSingleton<ITokenProvider, TokenProvider>()
-            .AddOptions<TokenOptions>()
-            .BindConfiguration(TokenOptions.Section);
+            .AddOptions<TokenSettings>()
+            .BindConfiguration(TokenSettings.Section);
 
         using var serviceProvider = services.BuildServiceProvider();
         var tokenProvider = serviceProvider.GetRequiredService<ITokenProvider>();
