@@ -30,7 +30,7 @@ public static class SharedConfiguration
 
         services
             .AddAntiforgery()
-            .Configure<KestrelServerOptions>(options => { options.Limits.MaxRequestBodySize = 15 * 1024 * 1024; });
+            .Configure<KestrelServerOptions>(options => { options.Limits.MaxRequestBodySize = 26 * 1024 * 1024; });
 
         services
             .AddCors()
