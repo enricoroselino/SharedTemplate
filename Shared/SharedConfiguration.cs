@@ -1,5 +1,6 @@
 ﻿using Carter;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Infrastructure.Ciphers;
@@ -28,6 +29,10 @@ public static class SharedConfiguration
             .AddAuthorization();
 
         services
+            .AddAntiforgery()
+            .Configure<KestrelServerOptions>(options => { options.Limits.MaxRequestBodySize = 15 * 1024 * 1024; });
+
+        services
             .AddCors()
             .AddProblemDetails()
             .AddExceptionHandler<GlobalExceptionHandler>();
@@ -53,6 +58,7 @@ public static class SharedConfiguration
 
         app
             .UseHttpsRedirection()
+            .UseAntiforgery()
             .UseCors(policyBuilder => policyBuilder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader())
             .UseExceptionHandler(cfg => { });
 

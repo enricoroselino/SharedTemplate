@@ -3,12 +3,6 @@ using Shared.Infrastructure.Ciphers.Algorithms.Aes;
 
 namespace Shared.Infrastructure.Ciphers;
 
-public interface IFileCipher
-{
-    public Task<MemoryStream> Encrypt(Stream input, CancellationToken cancellationToken = default);
-    public Task<MemoryStream> Decrypt(Stream input, CancellationToken cancellationToken = default);
-}
-
 public sealed class FileCipher : IFileCipher
 {
     private readonly IOptions<AesCipherOptions> _options;
@@ -19,15 +13,17 @@ public sealed class FileCipher : IFileCipher
         _options = options;
     }
 
-    public async Task<MemoryStream> Encrypt(Stream input, CancellationToken cancellationToken = default)
+    public async Task<byte[]> Encrypt(Stream input, CancellationToken cancellationToken = default)
     {
         await using var cipher = CipherDefined;
-        return await cipher.Encrypt(input, cancellationToken);
+        await using var encrypted = await cipher.Encrypt(input, cancellationToken);
+        return encrypted.ToArray();
     }
 
-    public async Task<MemoryStream> Decrypt(Stream input, CancellationToken cancellationToken = default)
+    public async Task<byte[]> Decrypt(Stream input, CancellationToken cancellationToken = default)
     {
         await using var cipher = CipherDefined;
-        return await cipher.Decrypt(input, cancellationToken);
+        await using var decrypted = await cipher.Decrypt(input, cancellationToken);
+        return decrypted.ToArray();
     }
 }
