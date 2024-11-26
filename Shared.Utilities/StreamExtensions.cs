@@ -1,4 +1,4 @@
-﻿namespace Shared.Extensions;
+﻿namespace Shared.Utilities;
 
 public static class StreamExtensions
 {

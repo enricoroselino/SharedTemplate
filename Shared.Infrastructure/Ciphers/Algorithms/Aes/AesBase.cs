@@ -7,7 +7,7 @@ namespace Shared.Infrastructure.Ciphers.Algorithms.Aes;
 public abstract class AesBase : IDisposable, IAsyncDisposable
 {
     private const int KeySize = AesSizeConstant.KeySize;
-    protected byte[] Key { get; }
+    protected byte[] Key { get; init; }
     protected bool IsDisposed;
 
     protected AesBase(IOptions<AesCipherSettings> options)

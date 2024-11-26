@@ -2,6 +2,7 @@
 using Shared.Contracts.CQRS;
 using Shared.Extensions;
 using Shared.Infrastructure.Ciphers;
+using Shared.Utilities;
 
 namespace Example.Server.Whatever.Features.FileCipher;
 

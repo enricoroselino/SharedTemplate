@@ -6,7 +6,7 @@ namespace Shared.Infrastructure.Ciphers;
 public sealed class FileCipher : IFileCipher
 {
     private readonly IOptions<AesCipherSettings> _options;
-    private IAesCipher CipherDefined => new AesCbcImplementation(_options);
+    private IAesCipher CipherDefined => new AesGcmImplementation(_options);
 
     public FileCipher(IOptions<AesCipherSettings> options)
     {

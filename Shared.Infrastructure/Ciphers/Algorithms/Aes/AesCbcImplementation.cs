@@ -38,7 +38,7 @@ public sealed class AesCbcImplementation : AesBase, IAesCipher
     {
         request.Position = 0;
 
-        var ivBuffer = new byte[AesSizeConstant.IvSize];
+        var ivBuffer = new byte[IvSize];
         await request.ReadExactlyAsync(ivBuffer, cancellationToken);
         ArgumentOutOfRangeException.ThrowIfNotEqual(ivBuffer.Length, IvSize);
         _baseCipher.IV = ivBuffer;

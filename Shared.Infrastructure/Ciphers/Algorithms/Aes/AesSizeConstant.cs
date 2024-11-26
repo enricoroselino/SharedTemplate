@@ -5,4 +5,5 @@ public static class AesSizeConstant
     public const int KeySize = 32;
     public const int IvSize = 16;
     public const int TagSize = 16;
+    public const int NonceSize = 12;
 }
